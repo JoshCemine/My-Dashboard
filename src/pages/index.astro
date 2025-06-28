@@ -1,11 +1,18 @@
 ---
 import "../styles/global.css";
-// Component Imports
-// import Button from "../components/Button.astro";
-import { Button } from "@/components/ui/button";
+import config from "./config.ts";
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+let HomepageContent = null;
+
+if (config.homepage?.trim()) {
+	try {
+		HomepageContent = (
+			await import(`./Module-${config.homepage}/index.astro`)
+		).default;
+	} catch (error) {
+		console.error("Error in loading homepage");
+	}
+}
 ---
 
 <html lang="en">
@@ -18,11 +25,12 @@ import { Button } from "@/components/ui/button";
 	</head>
 
 	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Shad/cn Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline"
-				>Markdown is also supported...</a
-			>
-		</div>
+		{
+			!HomepageContent ? (
+				<div>Showing default homepage</div>
+			) : (
+				<HomepageContent />
+			)
+		}
 	</body>
 </html>
