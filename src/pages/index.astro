@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
-import config from "./config.ts";
+// import config from "../config.ts";
+import config from "../config";
+import Layout from "@/layouts/main.astro";
 
 let HomepageContent = null;
 
@@ -15,22 +17,12 @@ if (config.homepage?.trim()) {
 }
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
-
-	<body>
-		{
-			!HomepageContent ? (
-				<div>Showing default homepage</div>
-			) : (
-				<HomepageContent />
-			)
-		}
-	</body>
-</html>
+<Layout content={{ title: "Home" }}>
+	{
+		!HomepageContent ? (
+			<div>Showing default homepage</div>
+		) : (
+			<HomepageContent />
+		)
+	}
+</Layout>

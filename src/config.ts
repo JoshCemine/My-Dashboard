@@ -1,5 +1,5 @@
 const config = {
-    "homepage": "EM"
+    "homepage": "Email"
 }
 
 export default config

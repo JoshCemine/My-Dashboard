@@ -1,6 +1,9 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 const { content } = Astro.props;
+import { ClientRouter } from "astro:transitions";
+
+import Navbar from "@/components/Navbar.astro";
 ---
 
 <html lang="en">
@@ -9,8 +12,10 @@ const { content } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{content.title}</title>
+		<ClientRouter />
 	</head>
 	<body>
 		<slot />
+		<Navbar />
 	</body>
 </html>

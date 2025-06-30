@@ -1,0 +1,8 @@
+---
+import MainLayout from "./main.astro";
+const { content } = Astro.props;
+---
+
+<MainLayout content={content}>
+	<slot />
+</MainLayout>
